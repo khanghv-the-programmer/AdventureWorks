@@ -30,15 +30,24 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (AdventureWorksBeta.Models.Person p in Model)
+            @for (int i = 300; i < 310; i++)
+            {
+                <tr>
+                    <td style="width: 50%">@Model[i].FirstName</td>
+                    <td style="width: 50%">@Model[i].LastName</td>
+                    <td style="width: 50%">@Model[i].Rowguid</td>
+                    <td style="width: 50%">@Model[i].BusinessEntity.Rowguid</td>
+                </tr>
+            }
+            @*@foreach (AdventureWorksBeta.Models.Person p in Model)
             {
                 <tr>
                     <td style="width: 50%">@p.FirstName</td>
                     <td style="width: 50%">@p.LastName</td>
                     <td style="width: 50%">@p.Rowguid</td>
-                    <td style="width: 50%">@p.BusinessEntity.Rowguid</td>
+                    <td style="width: 50%">@p.</td>
                 </tr>
-            }
+            }*@
         </tbody>
     </table>
 

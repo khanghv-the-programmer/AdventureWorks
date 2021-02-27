@@ -13,7 +13,10 @@ namespace AdventureWorksBeta.Models
         public AdventureWorks2014Context(DbContextOptions<AdventureWorks2014Context> options)
             : base(options)
         {
+            
         }
+
+
 
         public virtual DbSet<Address> Address { get; set; }
         public virtual DbSet<AddressType> AddressType { get; set; }
@@ -110,11 +113,8 @@ namespace AdventureWorksBeta.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source = localhost,1433; Initial Catalog = AdventureWorks2014;User ID = sa; Password = 123");
-            }
+            //SUPER DUPA VERY CRAZILY IMPORTANTTTTTTTTTTTTTTTTTTTTTTTTTTTT!
+            optionsBuilder.UseLazyLoadingProxies();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

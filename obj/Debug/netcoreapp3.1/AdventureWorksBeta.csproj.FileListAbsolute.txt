@@ -470,3 +470,5 @@ D:\C# core\AdventureWorksBeta\bin\Debug\netcoreapp3.1\NetTopologySuite.dll
 D:\C# core\AdventureWorksBeta\bin\Debug\netcoreapp3.1\NetTopologySuite.IO.SqlServerBytes.dll
 D:\C# core\AdventureWorksBeta\obj\Debug\netcoreapp3.1\EFCoreSqlServerNetTopologySuite.cs
 D:\C# core\AdventureWorksBeta\obj\Debug\netcoreapp3.1\Razor\Views\Home\People.cshtml.g.cs
+D:\C# core\AdventureWorksBeta\bin\Debug\netcoreapp3.1\Castle.Core.dll
+D:\C# core\AdventureWorksBeta\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
