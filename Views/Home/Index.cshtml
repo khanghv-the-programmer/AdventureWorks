@@ -1,8 +1,87 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model List<AdventureWorksBeta.Models.Product>
+
+@{
+    ViewData["Title"] = "Adventure Works Products";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            Product List
+        </div>
+        <div class="col-6">
+            Add a product
+        </div>
+
+    </div>
+
+    <br />
+    <br />
+    @{
+        int currentPage = (int)ViewBag.CurrentPage;
+        int totalPage = (int)ViewBag.TotalPage;
+    }
+    <h1>Page @(currentPage + 1)</h1>
+
+    @if (Model.Count() > 0)
+    {
+        <ul>
+        @foreach (AdventureWorksBeta.Models.Product p in Model)
+        {
+            <li style="display:inline">
+                <form action="~/Home/ProductDetail" style="display:inline">
+                    <input type="hidden" name="pId" value="@p.ProductId" />
+                    <button type="submit" class="btn-link" style="width: 18%; height:20%; text-align:center">
+                        <img style="width: 50%" class="img-thumbnail" src=" @string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(p.ProductProductPhoto.ElementAt(0).ProductPhoto.ThumbNailPhoto))" />
+                        <h5 style="width: 50%">@p.Name</h5>
+
+                        <p style="width: 50%">@p.ListPrice</p>
+
+                    </button>
+
+                </form>
+            </li>
+           
+        }
+            </ul>
+        if (currentPage != 0)
+        {
+                <form action="~/Home/Index" method="get" style="display:inline">
+                    <button type="submit" name="productPage" value="@(currentPage - 1)">@currentPage</button>
+
+                </form>
+                <form action="~/Home/Index" method="get" style="display:inline">
+                    <button type="submit" name="productPage" value="@(currentPage)" disabled>@(currentPage + 1)</button>
+
+                </form>
+
+            }
+            else
+            {
+                <form action="~/Home/Index" method="get" style="display:inline">
+                    <button type="submit" name="productPage" value="@(currentPage)" disabled>@(currentPage + 1)</button>
+
+                </form>
+            }
+            for (int i = currentPage + 1; i < currentPage + 5; i++)
+            {
+
+                <form action="~/Home/Index" method="get" style="display:inline">
+                    <button type="submit" name="productPage" value="@i">@(i + 1)</button>
+
+                </form>
+
+            }
+            <p style="display:inline">...</p>
+            <form action="~/Home/Index" method="get" style="display:inline">
+                <button type="submit" name="productPage" value="@(totalPage - 1)">@totalPage</button>
+            </form>
+
+
+        }
+else
+    {
+        <h2>Nothing here!</h2>
+    }
+
 </div>
