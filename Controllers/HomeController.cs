@@ -4,8 +4,10 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Http;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace AdventureWorksBeta.Controllers
 {
@@ -28,6 +30,8 @@ namespace AdventureWorksBeta.Controllers
         {
             List<Product> productList = _db.Product.ToList();
             List<Product> currentProList = new List<Product>();
+            List<ProductCategory> categories = _db.ProductCategory.ToList();
+            HttpContext.Session.SetString("Cate",JsonConvert.SerializeObject(categories));
             int currentPage = 0;
             totalRecordsProducts = productList.Count;
             if (totalRecordsProducts % pageSize == 0)
@@ -61,7 +65,7 @@ namespace AdventureWorksBeta.Controllers
             }
 
 
-            for (int i = currentPage * pageSize; i < currentPage * pageSize + pageSize - 1; i++)
+            for (int i = currentPage * pageSize; i < currentPage * pageSize + pageSize; i++)
             {
                 if (i >= totalRecordsProducts)
                 {
@@ -114,7 +118,7 @@ namespace AdventureWorksBeta.Controllers
 
                 currentPage = 0;
             }
-            for (int i = currentPage * pageSize; i < currentPage * pageSize + pageSize - 1; i++)
+            for (int i = currentPage * pageSize; i < currentPage * pageSize + pageSize; i++)
             {
                 if (i >= totalRecords)
                 {

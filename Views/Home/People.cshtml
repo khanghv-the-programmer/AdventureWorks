@@ -50,44 +50,83 @@
         </table>
 
 
-        if (currentPage != 0)
-        {
-            <form action="~/Home/People" method="get" style="display:inline">
-                <button type="submit" name="getPage" value="@(currentPage - 1)">@currentPage</button>
+        
+    if (currentPage != 0)
+    {
+    if (currentPage != 1)
+    {
+    <form action="~/Home/People" method="get" style="display:inline">
+        <button type="submit" name="getPage" value="0">1</button>
 
-            </form>
-            <form action="~/Home/People" method="get" style="display:inline">
-                <button type="submit" name="getPage" value="@(currentPage)" disabled>@(currentPage + 1)</button>
+    </form>
+    if (currentPage != 2)
+    {
+    <p style="display:inline">...</p>
+    }
 
-            </form>
+    }
 
-        }
-        else
-        {
-            <form action="~/Home/People" method="get" style="display:inline">
-                <button type="submit" name="getPage" value="@(currentPage)" disabled>@(currentPage + 1)</button>
 
-            </form>
-        }
-        for (int i = currentPage + 1; i < currentPage + 5; i++)
-        {
+    <form action="~/Home/People" method="get" style="display:inline">
+        <button type="submit" name="getPage" value="@(currentPage - 1)">@currentPage</button>
 
-            <form action="~/Home/People" method="get" style="display:inline">
-                <button type="submit" name="getPage" value="@i">@(i + 1)</button>
+    </form>
+    <form action="~/Home/People" method="get" style="display:inline">
+        <button type="submit" name="getPage" value="@(currentPage)" disabled>@(currentPage + 1)</button>
 
-            </form>
+    </form>
 
-        }
-        <p style="display:inline">...</p>
-        <form action="~/Home/People" method="get" style="display:inline">
-            <button type="submit" name="getPage" value="@(totalPage - 1)">@totalPage</button>
-        </form>
+    }
+    else
+    {
+    <form action="~/Home/People" method="get" style="display:inline">
+        <button type="submit" name="getPage" value="@(currentPage)" disabled>@(currentPage + 1)</button>
+
+    </form>
+    }
+    for (int i = currentPage + 1; i < currentPage + 5; i++)
+    {
+    int k = totalPage - currentPage;
+    if (k >= 5)
+    {
+    <form action="~/Home/People" method="get" style="display:inline">
+        <button type="submit" name="getPage" value="@i">@(i + 1)</button>
+
+    </form>
 
 
     }
     else
     {
-        <h2>Nothing here!</h2>
+    for (int j = 0; j < k; j++)
+    {
+    if (i + j >= totalPage)
+    {
+    break;
+    }
+    <form action="~/Home/People" method="get" style="display:inline">
+        <button type="submit" name="getPage" value="@(i+j)">@(i + j + 1)</button>
+
+    </form>
+
+    }
+    break;
+    }
+
+
+    }
+
+    if (currentPage + 5 < totalPage)
+    {
+    <p style="display:inline">...</p>
+    <form action="~/Home/People" method="get" style="display:inline">
+        <button type="submit" name="getPage" value="@(totalPage - 1)">@totalPage</button>
+    </form>
+    }
+    }
+    else
+    {
+    <h2>Nothing here!</h2>
     }
 
 </div>

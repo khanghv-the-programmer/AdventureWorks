@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AdventureWorksBeta.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace AdventureWorksBeta
 {
@@ -35,6 +36,8 @@ namespace AdventureWorksBeta
                 .AddEntityFrameworkStores<AdventureWorks2014Context>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddSession(option => option.IdleTimeout = TimeSpan.FromSeconds(60*90));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +56,7 @@ namespace AdventureWorksBeta
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthentication();

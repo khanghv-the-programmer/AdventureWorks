@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace AdventureWorksBeta.Models
 {
@@ -15,8 +16,9 @@ namespace AdventureWorksBeta.Models
         public string Name { get; set; }
         public Guid Rowguid { get; set; }
         public DateTime ModifiedDate { get; set; }
-
+        [JsonIgnore]
         public virtual ProductCategory ProductCategory { get; set; }
+        [JsonIgnore]
         public virtual ICollection<Product> Product { get; set; }
     }
 }

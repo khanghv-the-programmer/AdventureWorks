@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@{
+    @using Newtonsoft.Json;
+    @using Microsoft.AspNetCore.Http;
+    @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+    List<AdventureWorksBeta.Models.ProductCategory> categories = (List<AdventureWorksBeta.Models.ProductCategory>)JsonConvert.DeserializeObject<List<AdventureWorksBeta.Models.ProductCategory>>(HttpContextAccessor.HttpContext.Session.GetString("Cate"));
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,6 +13,7 @@
     <title>@ViewData["Title"] - AdventureWorksBeta</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/custom.css" />
 </head>
 <body>
     <header>
@@ -18,10 +26,37 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    <ul class="navbar">
+                        <li class="subnav">
+                            <form action="~/Home/Index">
+
+                                <button class="subnavbtn" type="submit">
+
+                                    <p>Home</p>
+                                </button>
+                            </form>
+
                         </li>
+                        @foreach (ProductCategory cate in categories)
+                        {
+                            <li class="subnav">
+                                <button class="subnavbtn">@cate.Name</button>
+                                <div class="subnav-content">
+                                    @foreach (ProductSubcategory sub in cate.ProductSubcategory)
+                                    {
+                                        @*<form action="~/Product/SearchProductByCategoryAndSubCategory">
+                                                <button type="submit">
+                                                    <input type="hidden" name="idSubString" value="@sub.ProductCategoryId"/>
+                                                    <p>@sub.Name</p>
+                                                </button>
+                                            </form>*@
+
+                                        <a href="~/Product/SearchProductByCategoryAndSubCategory?idSubString=@sub.ProductCategoryId">@sub.Name</a>
+                                    }
+                                </div>
+                            </li>
+                        }
+
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
