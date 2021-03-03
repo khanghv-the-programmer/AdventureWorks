@@ -24,6 +24,16 @@ namespace AdventureWorksBeta.Controllers
         }
         public IActionResult CreateProduct()
         {
+
+            List<UnitMeasure> weightList = _db.UnitMeasure.ToList();
+            List<UnitMeasure> sizeList = _db.UnitMeasure.ToList();
+            List<ProductSubcategory> subCate = _db.ProductSubcategory.ToList();
+            List<ProductModel> modelList = _db.ProductModel.ToList();
+
+            ViewBag.SizeUnitMeasureCode = sizeList;
+            ViewBag.WeightUnitMeasureCode = weightList;
+            ViewBag.ProductSubcategoryId = subCate;
+            ViewBag.ProductModelId = modelList;
             return View();
         }
         public IActionResult SearchProductByCategoryAndSubCategory(string idSubString, int? getPage)
@@ -92,6 +102,11 @@ namespace AdventureWorksBeta.Controllers
             
             
             return View(currentList);
+        }
+
+        public IActionResult AddProduct()
+        {
+            return View();
         }
     }
 }
