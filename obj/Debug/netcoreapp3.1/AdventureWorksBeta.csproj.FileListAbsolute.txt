@@ -473,3 +473,5 @@ D:\C# core\AdventureWorksBeta\obj\Debug\netcoreapp3.1\Razor\Views\Home\People.cs
 D:\C# core\AdventureWorksBeta\bin\Debug\netcoreapp3.1\Castle.Core.dll
 D:\C# core\AdventureWorksBeta\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Proxies.dll
 D:\C# core\AdventureWorksBeta\obj\Debug\netcoreapp3.1\Razor\Views\Home\ProductDetail.cshtml.g.cs
+D:\C# core\AdventureWorksBeta\obj\Debug\netcoreapp3.1\Razor\Views\Product\SearchProductByCategoryAndSubCategory.cshtml.g.cs
+D:\C# core\AdventureWorksBeta\obj\Debug\netcoreapp3.1\Razor\Views\Product\CreateProduct.cshtml.g.cs

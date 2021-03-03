@@ -132,6 +132,8 @@ namespace AdventureWorksBeta.Controllers
 
             return View(currentList);
         }
+
+
         public IActionResult Privacy()
         {
             return View();
@@ -142,6 +144,8 @@ namespace AdventureWorksBeta.Controllers
             var productdetail = _db.Product.FirstOrDefault(pro => pro.ProductId == pId);
             return View(productdetail);
         }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

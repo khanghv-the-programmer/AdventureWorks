@@ -1,6 +1,6 @@
 ﻿.navbar {
     overflow: visible;
-    background-color: #333;
+    background-color: #343a40;
 }
 
     .navbar a {
@@ -29,14 +29,14 @@
     }
 
     .navbar a:hover, .subnav:hover .subnavbtn {
-        background-color: red;
+        background-color: grey;
     }
 
 .subnav-content {
     display: none;
     position: absolute;
     left: 0;
-    background-color: red;
+    background-color: grey;
     width: 100%;
     z-index: 3;
 }
